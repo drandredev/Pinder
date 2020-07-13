@@ -12,7 +12,12 @@
 */
 
 Route::get('/',  'PinderController@index');
+Route::get('/busqueda',  'PinderController@busqueda');
 Route::get('/posts/{id}','PinderController@show');
+
+
+Route::get('/accesorios',  'AccesoriosController@index');
+Route::get('/acces/{id}','AccesoriosController@show');
 
 Auth::routes();
 

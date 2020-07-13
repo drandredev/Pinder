@@ -1,39 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <script src="{{ asset('jp/app.js') }}"></script>
-    <title>Pinder</title>
-</head>
-<body>
+@extends('layouts.plantilla')
 
-<div class="jumbotron jumbroton-fluid">
-    <div class="container text-center">
-        <h1 class="display-3">Informacion Mascota</h1>
+@section('titulo','Pinder')
+
+@section('contenido')
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+  <div class="row featurette" style="margin:60px">
+    <div class="col-md-5">
+      <img src="{{ asset($registro1->image) }}" class="card-img-top" alt="...">
+      <p><a class="btn btn-dark" href="{{ action('PinderController@index') }}" role="button">&vartriangleleft; Volver a Inicio </a></p>
+      </div>
+
+    <div class="col-md-6" style="background-color:#FFFF;">
+      <h2 class="featurette-heading"><span class="text-muted">{{ $registro1->name }}</span></h2>
+      
+      <h2 class="lead">SEXO:</h2>
+      <p class="lead"> {{ $registro1->sex }}</p>
+
+      <h2 class="lead">RAZA:</h2>
+      <p class="lead"> {{ $registro1->race }}</p>
+
+      <h2 class="lead">TIPO:</h2>
+      <p class="lead"> {{ $registro1->type }}</p>
+      
+      <h2 class="lead">DESCRIPCION:</h2>
+      <p class="lead"> {{ $registro1->description }}</p>
     </div>
-</div>
+ 
+  </div>
+  </section>
 
-<div class="container">
-    <div class="row mb-4 justify-content-md-center">
-        <div class="col-md-6">
-            <div class="card">
-                <img src="{{ asset($registro1->image) }}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Nombre: {{ $registro1->name }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Sexo: {{$registro1->sex}}</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Raza: {{$registro1->race}}</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Tipo: {{$registro1->type}}</h6>
-                    <h4 class="card-title">Descripcion Mascota:</h4>
-                    <p class="card-text"> {{ $registro1->description }}</p>
-                    <a href="{{ action('PinderController@index') }}" class="card-link">Volver al menu de Inicio</a>
-                </div>
-            </div>
-        </div>
-    </div>        
 
-</div>
+ 
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
 
 </body>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+@include('layouts.footer', ['container'=>'container-fluid'])
+
 </html>

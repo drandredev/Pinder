@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+
   <title>Pinder</title>
   <!-- Palabras META SEO O COSAS ASI-->
   <meta content="" name="descriptison">
@@ -41,23 +42,54 @@
       </div>
 
       <nav class="nav-menu d-none d-lg-block">
+      
         <ul>
-          <li class="active"><a href="index.html">Inicio</a></li>
-          <li><a href="#about">Nosotros</a></li>
-          <li><a href="#services">Match</a></li>
+          <li class="active"><a href="#/">Inicio</a></li>
+          <li><a href="#services">Nosotros</a></li>
+          <li><a href="#cta">Match</a></li>
           <li><a href="#portfolio">Mascotas</a></li>
           <li><a href="#team">Desarrolladores</a></li>
+          <li><a href="{{ action('AccesoriosController@index') }}">Accesorios</a></li>
           <li><a href="#contact">Contacto</a></li>
+          
+          @guest
 
+            <li><a href="{{ route('login') }}">Ingresar</a></li>
+              @if(Route::has('register'))
+              <li><a href="{{ route('register') }}">Registrate</a></li>
+              @endif
+          @else
+            <li>
+              <a id="navbarDropdown" class="nav-link dropdown-toggle" style="background-color:#FF69B4;" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre >
+              {{ Auth::user()->name }} <span class="caret"></span>
+              </a>
+            
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+                    {{ __('Salir') }}
+                  </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                  </form>
+                </div>
+            </li>
+          @endguest
         </ul>
       </nav>
-
+      
     </div>
   </header>
-
+  
   <section id="hero">
     <div class="hero-container" data-aos="fade-up">
+      @if(Auth::guest())
       <h1>Bienvenido a Pinder</h1>
+      @else
+      <h1>Bienvenido a Pinder {{ Auth::user()->name }}</h1>
+      @endif
       <h2>El mejor lugar para tu mascota.</h2>
       <a href="#about" class="btn-get-started scrollto"><i class="bx bx-chevrons-down"></i></a>
     </div>
@@ -182,7 +214,7 @@
         <div class="row" data-aos="fade-in">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">Todas</li>
+              <li data-filter="*" class="filter-active">All</li>
               <li data-filter=".filter-app">Destacadas</li>
               <li data-filter=".filter-card">Cerca a ti</li>
               <li data-filter=".filter-web">Vistas ultimamente</li>
@@ -191,18 +223,19 @@
         </div>
 
         <div class="row portfolio-container" data-aos="fade-up">
-
+          @foreach ($registros as $registro)
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
             <div class="portfolio-wrap">
-              <img src="/static/img/perritos/perrito1.jpg" class="img-fluid" alt="">
+              <img src="{{ asset($registro->image) }}" class="img-fluid" alt="">
               <div class="portfolio-links">
-                <a href="/static/img/perritos/perrito1.jpg" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-plus"></i></a>
+                <a href="{{ action('PinderController@show', $registro->id) }}"><i class="bx bx-plus"></i></a>
                 <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
               </div>
             </div>
           </div>
+          @endforeach
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+          <!--<div class="col-lg-4 col-md-6 portfolio-item filter-web">
             <div class="portfolio-wrap">
               <img src="/static/img/perritos/perrito2.jpg" class="img-fluid" alt="">
               <div class="portfolio-links">
@@ -280,8 +313,8 @@
                 <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
               </div>
             </div>
-          </div>
-
+          </div>-->
+         
         </div>
 
       </div>

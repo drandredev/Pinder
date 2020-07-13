@@ -10,7 +10,14 @@ class PinderController extends Controller
     public function index()
     {
         $registros = Post::all();
-        return view ('index2',compact('registros'));
+        return view ('index',compact('registros'));
+    }
+
+    public function busqueda(Request $request)
+    {
+        $nombreM =$request->get('buscarporM');
+        $AccesorioM =Post::where('name','like',"%$nombreM%")->paginate(5);
+        return view('busquedaMascota',compact('AccesorioM'));
     }
 
     public function show($id)
