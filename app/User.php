@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'telef','email', 'password',
     ];
 
     /**
@@ -39,7 +39,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function post(){
+    public function posts(){
         return $this->hasMany('App\Post');
+    }
+
+    public function accesorios(){
+        return $this->hasMany('App\Accesorios');
+    }
+
+    public function comentarios(){
+        return $this->hasMany('App\Comentarios');
     }
 }

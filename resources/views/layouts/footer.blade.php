@@ -34,7 +34,7 @@
               <li><i class="bx bx-chevron-right"></i> <a href="#portfolio">Mascotas</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#team">Desarrolladores</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="{{ action('AccesoriosController@index') }}">Accesorios</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#contact">Contacto</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/contact">Contacto</a></li>
             </ul>
           </div>
 
@@ -42,10 +42,8 @@
           <div class="col-lg-4 col-md-6 footer-newsletter" data-aos="fade-up" data-aos-delay="350">
             <h4>¿Deseas recibir novedades de Pinder?</h4>
             <p>Podrás enterarte de nuevas mascotas</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Enviar">
-            </form>
-
+                     
+            <a href="/contact" class="btn btn-lg active" role="button" aria-pressed="true" style="background-color:#22C8A4; color:white">¡Envíanos un mensaje!</a>
           </div>
 
         </div>

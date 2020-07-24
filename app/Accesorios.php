@@ -15,4 +15,9 @@ class Accesorios extends Model
     		return $query->where('nombre','like',"%$nombres%");
     	}
     }
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
+
 }

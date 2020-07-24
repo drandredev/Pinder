@@ -6,7 +6,6 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-
   <title>@yield('titulo','Pinder')</title>
   <!-- Palabras META SEO O COSAS ASI-->
   <meta content="" name="descriptison">
@@ -50,32 +49,47 @@
           <li><a href="#team">Desarrolladores</a></li>
           <li><a href="{{ action('AccesoriosController@index') }}">Accesorios</a></li>
           <li><a href="#contact">Contacto</a></li>
-        
-          @guest
 
-            <li><a href="{{ route('login') }}">Ingresar</a></li>
-              @if(Route::has('register'))
-              <li><a href="{{ route('register') }}">Registrate</a></li>
-              @endif
-          @else
-            <li>
-              <a id="navbarDropdown" class="nav-link dropdown-toggle" style="background-color:#FF69B4;" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre >
-              {{ Auth::user()->name }} <span class="caret"></span>
-              </a>
-            
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                          document.getElementById('logout-form').submit();">
-                    {{ __('Salir') }}
-                  </a>
-
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                  </form>
-                </div>
+        @guest
+          <li class="nav-item">
+            <a href="{{ route('login') }}">Ingresar</a>
+          </li>
+          @if(Route::has('register'))
+            <li class="nav-item">
+              <a href="{{ route('register') }}">Registrate</a>
             </li>
-          @endguest
+          @endif
+
+        @else
+          <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" style="background-color:#FF69B4;color:white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre >
+              {{ Auth::user()->name }} <span class="caret"></span>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="background-color:#FF69B4;">
+            
+                @if(Auth::user()->email == "pinder@tecsup.edu.pe")
+                  <a href="{{ route('registros') }}" class="btn btn-info" style="color:white;">Admin</a>
+                @endif
+                <a class="dropdown-item" href="{{ route('editarUsuario') }}" style="color:white">Mi Cuenta</a>
+
+                <a class="cta-btn" href="{{  route('mascotasMias') }} " style="color:white">Mis Mascotas</a>
+                
+                
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" style="color:white">
+                  {{ __('Salir') }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+                </form>
+                
+
+             </div>
+          </li>
+        
+        @endguest
         </ul>
       </nav>
       
@@ -84,13 +98,10 @@
   
 
 
-  <main id="main">
 
 @yield('contenido')
 
- 
 
-  </main><!-- FIN PRINCIPAL-->
 
   
 

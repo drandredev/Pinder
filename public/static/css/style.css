@@ -37,7 +37,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 50px;
   right: 15px;
   bottom: 15px;
-  background: #67b0d1;
+  background: #ff69b4;
   color: #fff;
   transition: display 0.5s ease-in-out;
   z-index: 99999;
@@ -52,7 +52,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .back-to-top:hover {
   color: #fff;
-  background: #86c0da;
+  background: #ff69b4;
   transition: background 0.2s ease-in-out;
 }
 
@@ -856,7 +856,7 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Portfolio Details
+# Portfalio Details
 --------------------------------------------------------------*/
 .portfolio-details {
   padding-top: 30px;
@@ -1260,6 +1260,11 @@ section {
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
+
+
+
+
+
 #footer {
   background: url("../img/Fondo.jpg") top center;
   padding: 0 0 30px 0;
